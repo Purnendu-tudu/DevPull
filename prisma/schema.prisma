@@ -25,8 +25,12 @@ model User {
   avatrUrl     String?
   bio          String?
   session      Session[]
+  posts        Post[]
 
   createDAt DateTime @default(now())
+  following Follow[] @relation("Following")
+  followers Follow[] @relation("Followers")
+  
 
   @@map("users")
 }
@@ -35,7 +39,29 @@ model Session {
   id        String   @id
   userId    String
   expiresAt DateTime
-  User User @relation(fields: [userId], references: [id] , onDelete:  Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sessions")
+}
+
+model Follow {
+  followerId  String
+  follower    User    @relation("Following", fields: [followerId], references: [id], onDelete: Cascade)
+  followingId String
+  following   User    @relation("Followers", fields: [followingId], references: [id], onDelete: Cascade)
+  
+
+  @@unique([followerId, followingId])
+  @@map("follows")
+}
+
+model Post {
+  id      String @id @default(cuid())
+  content String
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@map("posts")
 }
