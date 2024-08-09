@@ -14,7 +14,7 @@ export default function Page() {
       <div className="shadow-2xl flex h-full max-h-[40rem] w-full max-w-[64rem] overflow-clip rounded-2xl bg-card">
         <div className="md:w-1/2 w-full sapce-y-10 overflow-y-auto p-10">
             <div className="space-y-1 text-center">
-                <h1 className="text-3xl font-bold">SignUp to DevPull</h1>
+                <h1 className="text-3xl font-bold">SignUp to DevInPull</h1>
                 <p className="text-muted-foreground">
                     A palce where <span className="italic" >you</span> can pull ideas with friend. 
                 </p>
