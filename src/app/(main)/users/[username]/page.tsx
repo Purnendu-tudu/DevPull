@@ -10,9 +10,10 @@ import { formatNumber } from "@/lib/utils";
 import { formatDate } from "date-fns";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { cache } from "react";
+import { cache, use } from "react";
 import UserPosts from "./UserPosts";
 import Linkify from "@/components/Linkify";
+import EditProfileButton from "./EditPofileButton";
 
 interface PageProps {
   params: { username: string };
@@ -114,20 +115,20 @@ async function UserProfile({ user, loggedUsedId }: UserProfileProps) {
           </div>
         </div>
         {user.id === loggedUsedId ? (
-          <Button>Edit Profile</Button>
+          <EditProfileButton user={user}/>
         ) : (
           <FollowButton userId={user.id} intialState={followeInfo} />
         )}
       </div>
       {user.bio && (
         <>
-          <hr>
+          <hr/>
             <Linkify>
               <div className="overflow-hidden whitespace-pre-line break-words">
                 {user.bio}
               </div>
             </Linkify>
-          </hr>
+         
         </>
       )}
     </div>

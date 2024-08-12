@@ -27,12 +27,15 @@ export default function Post({ post }: PostProps) {
           </UserToolTip>
 
           <div>
-            <Link
-              href={`/users/${post.user.username}`}
-              className="black font-medium hover:underline"
-            >
-              {post.user.username}
-            </Link>
+            <UserToolTip user={post.user}>
+              <Link
+                href={`/users/${post.user.username}`}
+                className="black font-medium hover:underline"
+              >
+                {post.user.username}
+              </Link>
+            </UserToolTip>
+
             <Link
               href={`/posts/${post.id}`}
               className="block text-sm text-muted-foreground hover:underline"
